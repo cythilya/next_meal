@@ -1,0 +1,59 @@
+@import '../variables/_variable.scss';
+
+.app-container {
+  display: flex;
+  width: 1170px;
+  margin: 0 auto;
+}
+
+.app-main-content {
+  width: 80%;
+}
+
+.app-menu {
+  width: 20%;
+}
+
+@media screen and (max-width: 1080px) {
+  .app-container {
+    width: 970px;
+  }
+}
+
+@media screen and (max-device-width: 840px) {
+  .app-container {
+    width: 750px;
+  }
+
+  .app-main-content {
+    width: 75%;
+  }
+
+  .app-menu {
+    width: 25%;
+  }
+}
+
+@media screen and (max-device-width: 768px) {
+  .app-container {
+    width: auto;
+  }
+}
+
+@media screen and (max-device-width: 568px) {
+  .app-container {
+    flex-wrap: wrap;
+  }
+
+  .app-container--reverse {
+    flex-wrap: wrap-reverse;
+  }
+
+  .app-main-content {
+    width: 100%;
+  }
+
+  .app-menu {
+    width: 100%;
+  }
+}

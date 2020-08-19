@@ -1,0 +1,14 @@
+@import '../variables/_variable.scss';
+
+.store-control-buttons {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 15px 0 15px -5px;
+}
+
+.store-control-buttons__icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,56 @@
+@import '../variables/_variable.scss';
+
+.tabs__nav {
+  display: flex;
+}
+
+.tabs__nav__item {
+  display: block;
+  padding: 9px 12px 9px 12px;
+  font-size: 13px;
+  color: $dark-gray;
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+  cursor: pointer;
+  border-bottom: 2px solid $white;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+  &:hover {
+    color: $black
+  }
+
+  &.selected {
+    color: $black;
+    font-weight: bold;
+    background: $white;
+    border-bottom: 2px solid $main;
+    cursor: default;
+    transition: border-bottom .2s linear;
+  }
+}
+
+.tab__panel {
+  border-top: 1px solid $border-color;
+  background: $faux-white;
+}
+
+.tabs__panel__item {
+  display: none;
+  padding: 5px 0 0 0;
+  text-align: justify;
+  word-wrap: break-word;
+}
+
+.tabs__panel__item.selected {
+  display: block;
+  padding: 15px;
+}
+
+@media screen and (max-device-width: 568px) {
+  .tabs__nav__item {
+    width: calc(100% / 2);
+    text-align: center;
+  }
+}

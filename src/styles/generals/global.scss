@@ -1,0 +1,159 @@
+@import '../variables/_variable.scss';
+
+body {
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue','Noto Sans','Noto Sans CJK TC',sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+input, textarea, select, button {
+  font-size: 14px;
+}
+
+select {
+  height: 25px;
+  margin-top: 4px;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.align-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.mt-2x {
+  margin-top: 20px;
+}
+
+.mb-1x {
+  margin-bottom: 10px;
+}
+
+.mb-2x {
+  margin-bottom: 20px;
+}
+
+.unordered-list-circle {
+  width: 100%;
+  margin-left: 10px;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+.panel {
+  position: relative;
+  margin: 15px 0;
+  padding: 15px;
+  border-bottom: 1px dashed $border-color;
+  border-radius: $half-round;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.panel__main-heading {
+  display: flex;
+  align-items: center;
+  font-size: $heading-main-font-size;
+  .panel__heading-deco {
+    width: 24px;
+    height: 24px;
+    margin: 0 0 0 5px;
+    fill: $stone;
+  }
+}
+
+.panel__view-more {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.card-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.newsticker {
+  width: $containter-large-desktop-width;
+  margin: 15px auto 0 auto;
+  padding: 0 15px;
+
+  li {
+    width: 98%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.item-group {
+  display: flex;
+}
+
+@media screen and (max-width: 1080px) {
+  .newsticker {
+    width: $containter-medium-desktop-width;
+  }
+}
+
+@media screen and (max-device-width: 840px) {
+  newsticker {
+    width: $containter-wide-tablets-width;
+  }
+}
+
+@media screen and (max-device-width: 768px) {
+  .newsticker {
+    width: $containter-tablet-width;
+  }
+
+  .app-menu {
+    .panel__main-heading {
+      font-size: $heading-font-size;
+    }
+  }
+}
+
+@media screen and (max-device-width: 568px) {
+  .card-list {
+    justify-content: center;
+  }
+
+  .unordered-list-circle {
+    font-size: 15px;
+  }
+}

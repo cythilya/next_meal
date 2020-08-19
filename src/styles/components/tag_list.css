@@ -1,0 +1,34 @@
+@import '../variables/_variable.scss';
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 5px;
+  background: $border-color;
+}
+
+.tag-list__item {
+  box-sizing: border-box;
+  margin: 5px 2px;
+  padding: 5px;
+  background: $light-gray;
+  border-radius: $half-round;
+}
+
+.tag-list__item__title {
+  display: block;
+  text-align: center;
+}
+
+.tag-list__item__link {
+  display: block;
+  font-size: $label-font-size;
+  color: $font-content-color;
+}
+
+.tag-list__item__icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+}

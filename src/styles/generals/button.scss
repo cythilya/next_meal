@@ -1,0 +1,58 @@
+@import '../variables/_variable.scss';
+
+.button {
+  display: block;
+  margin: 5px 3px;
+  padding: 5px;
+  border-radius: $whole-round;
+  color: $white;
+  transition: all .1s;
+  background: $main;
+  border-bottom: 3px solid $dark-orange;
+  text-align: center;
+  text-decoration: none;
+  min-width: 50px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover, &:active {
+    color: $white;
+    transform: translate(0, 5px);
+  }
+
+  &.clicked {
+    transform: translate(0, 0);
+  }
+}
+
+.button--default {
+  @extend .button;
+  background: $disabled;
+  border-bottom: 3px solid $font-hint-color;
+}
+
+.button--transparent {
+  @extend .button;
+  margin: 0;
+  min-width: auto;
+  background: transparent;
+  border-bottom: transparent;
+}
+
+.button-with-line-breaks-text {
+  display: block;
+  font-size: $label-font-size;
+}
+
+@media screen and (max-device-width: 568px) {
+  .button {
+    flex-grow: 1;
+    padding: 10px;
+  }
+  .button-with-line-breaks-text {
+    font-size: $label-big-font-size;
+  }
+  .short-word {
+    padding: 0 14px;
+  }
+}
