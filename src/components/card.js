@@ -153,10 +153,8 @@ class Card extends Component {
         </LazyLoad>
         <div className="card__container">
           <h2 className="card__title">
-            <Link to={`/store/${store.id}`}>
-              <a title={store.name}>
-                {store.name}
-              </a>
+            <Link to={`/store/${store.id}`} title={store.name}>
+              {store.name}
             </Link>
           </h2>
           <div className="card__tag-list">
@@ -164,13 +162,8 @@ class Card extends Component {
               store.tags.map((item) => {
                 return (
                   <div key={item} className="card__tag-item">
-                    <Link to={`/tag/${item}`}>
-                      <a
-                        title={item}
-                        className="card__tag-link"
-                      >
-                        {item}
-                      </a>
+                    <Link to={`/tag/${item}`} title={item} className="card__tag-link">
+                      {item}
                     </Link>
                   </div>
                 );

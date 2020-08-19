@@ -47,13 +47,12 @@ class Index extends Component {
             離我最近
             <span className="panel__heading-deco icon-pin-map" />
           </h1>
-          <Link to="/nearby">
-            <a
-              className="panel__view-more"
-              title="看更多-離我最近"
-            >
-              看更多
-            </a>
+          <Link
+            to="/nearby"
+            className="panel__view-more"
+            title="看更多-離我最近"
+          >
+            看更多
           </Link>
           <div className="card-list">
             { this.renderCards(nearbyStoresData) }
@@ -63,13 +62,8 @@ class Index extends Component {
           <h1 className="panel__main-heading">
             猜你想吃
           </h1>
-          <Link to="/nearby">
-            <a
-              className="panel__view-more"
-              title="看更多-猜你想吃"
-            >
-              看更多
-            </a>
+          <Link to="/nearby" className="panel__view-more" title="看更多-猜你想吃">
+            看更多
           </Link>
           <div className="card-list">
             { this.renderCards(recommendStoresData) }
@@ -80,13 +74,8 @@ class Index extends Component {
             熱門推薦
             <span className="panel__heading-deco icon-star" />
           </h1>
-          <Link to="/nearby">
-            <a
-              className="panel__view-more"
-              title="看更多-熱門推薦"
-            >
-              看更多
-            </a>
+          <Link to="/nearby" className="panel__view-more" title="看更多-熱門推薦">
+            看更多
           </Link>
           <div className="card-list">
             { this.renderCards(hotStoresData) }

@@ -43,10 +43,8 @@ const StoreItem = ({ store }) => {
         </div>
         <div className="store-item__container">
           <h2 className="store-item__title">
-            <Link to={`/store/${store.id}`}>
-              <a title={store.name}>
-                {store.name}
-              </a>
+            <Link to={`/store/${store.id}`} title={store.name}>
+              {store.name}
             </Link>
           </h2>
           <div className="store-item__description ">
@@ -119,13 +117,12 @@ const StoreItem = ({ store }) => {
               store.tags.map((item) => {
                 return (
                   <div key={item} className="store-item__tag-item">
-                    <Link to={`/tag/${item}`}>
-                      <a
-                        className="store-item__tag-link"
-                        title={item}
-                      >
-                        {item}
-                      </a>
+                    <Link
+                      to={`/tag/${item}`}
+                      className="store-item__tag-link"
+                      title={item}
+                    >
+                      {item}
                     </Link>
                   </div>
                 );

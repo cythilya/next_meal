@@ -100,26 +100,25 @@ class Header extends Component {
           key={item.title}
           className="header__menu__item"
         >
-          <Link to={item.link}>
-            <a
-              title={item.title}
-              className="header__menu__item__link"
-              onClick={() => {
-                if (item.modalType === MODAL_TYPE.LOGIN) {
-                  this.setState({ modalType: MODAL_TYPE.LOGIN });
-                } else if (item.id === 'logout') {
-                  this.props.dispatch(logout());
-                }
-              }}
-            >
-              <span
-                title={item.title}
-                className={`header__menu__item__icon icon-${item.icon}`}
-              />
-              <span className="header__menu__item__title">
-                {item.title}
-              </span>
-            </a>
+          <Link
+            to={item.link}
+            title={item.title}
+            className="header__menu__item__link"
+            onClick={() => {
+              if (item.modalType === MODAL_TYPE.LOGIN) {
+                this.setState({ modalType: MODAL_TYPE.LOGIN });
+              } else if (item.id === 'logout') {
+                this.props.dispatch(logout());
+              }
+            }}
+          >
+            <span
+            title={item.title}
+            className={`header__menu__item__icon icon-${item.icon}`}
+            />
+            <span className="header__menu__item__title">
+              {item.title}
+            </span>
           </Link>
         </div>
       );
@@ -207,21 +206,18 @@ class Header extends Component {
     return (
       <div className="header">
         <div className="header__nav">
-          <Link to="/">
-            <a title={common.title}>
-              <i
-                className="header__logo icon-logo"
-                aria-label={common.title}
-              />
-            </a>
+          <Link to="/" title={common.title}>
+            <i
+              className="header__logo icon-logo"
+              aria-label={common.title}
+            />
           </Link>
-          <Link to="/">
-            <a
-              className="header__title"
-              title={common.title}
-            >
-              { common.title }
-            </a>
+          <Link
+            to="/"
+            className="header__title"
+            title={common.title}
+          >
+            { common.title }
           </Link>
         </div>
           {this.renderSearchBox()}

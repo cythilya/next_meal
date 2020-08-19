@@ -49,13 +49,12 @@ class Fav extends Component {
             熱門推薦
             <span className="panel__heading-deco icon-star" />
           </h1>
-          <Link to="/nearby">
-            <a
-              className="panel__view-more"
-              title="看更多-熱門推薦"
-            >
-              看更多
-            </a>
+          <Link
+            to="/nearby"
+            className="panel__view-more"
+            title="看更多-熱門推薦"
+          >
+            看更多
           </Link>
           <div className="card-list">
             {this.renderCards(hotStoresData)}

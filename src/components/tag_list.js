@@ -14,10 +14,10 @@ const TagList = ({ tags }) => {
               key={item.id}
               className="tag-list__item"
             >
-              <Link to={`/tag/${item.tag}`}>
-                <a
-                  title={item.title}
-                  className="tag-list__item__link"
+              <Link
+                to={`/tag/${item.tag}`}
+                title={item.title}
+                className="tag-list__item__link"
                 >
                   <span
                     title={item.title}
@@ -26,7 +26,6 @@ const TagList = ({ tags }) => {
                   <span className="tag-list__item__title">
                     {item.title}
                   </span>
-                </a>
               </Link>
             </div>
           );

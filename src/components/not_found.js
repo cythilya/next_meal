@@ -29,28 +29,20 @@ class Notfound extends Component {
         <h1 className="panel__main-heading">
           找不到！
         </h1>
-        <Link to="/">
-          <a title="回「吃什麼」首頁">
-            回首頁
-          </a>
+        <Link to="/" title="回「吃什麼」首頁">
+          回首頁
         </Link>
         或看熱門關鍵字
-        <Link to={`/tag/${tags[0]}`}>
-          <a title={tags[0]}>
-            {tags[0]}
-          </a>
+        <Link to={`/tag/${tags[0]}`} title={tags[0]}>
+          {tags[0]}
         </Link>
         、
-        <Link to={`/tag/${tags[1]}`}>
-          <a title={tags[1]}>
-            {tags[1]}
-          </a>
+        <Link to={`/tag/${tags[1]}`} title={tags[1]}>
+          {tags[1]}
         </Link>
         、
-        <Link to={`/tag/${tags[2]}`}>
-          <a title={tags[2]}>
-            { tags[2] }
-          </a>
+        <Link to={`/tag/${tags[2]}`} title={tags[2]}>
+          {tags[2]}
         </Link>
         <hr />
         <div className="mt-2x">

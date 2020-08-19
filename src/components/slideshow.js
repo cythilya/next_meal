@@ -141,32 +141,27 @@ class Slideshow extends Component {
           onMouseEnter={this.onMouseEnterHandler}
           onMouseLeave={this.onMouseLeaveHandler}
         >
-          <Link to={item.link}>
-            <a
-              title={item.title}
-              target="_blank"
-            >
-              <LazyLoad offsetVertical={0} height={405}>
-                <figure>
-                  <picture>
-                    <source
-                      media="all"
-                      srcSet={item.imageWebp}
-                      type="image/webp"
-                    />
-                    <source
-                      media="all"
-                      srcSet={item.image}
-                      type="image/jpeg"
-                    />
-                    <img src={item.image} alt={item.title} />
-                  </picture>
-                  <figcaption className="hide">
-                    {item.title}
-                  </figcaption>
-                </figure>
-              </LazyLoad>
-            </a>
+          <Link to={item.link} title={item.title} target="_blank">
+            <LazyLoad offsetVertical={0} height={405}>
+              <figure>
+                <picture>
+                  <source
+                    media="all"
+                    srcSet={item.imageWebp}
+                    type="image/webp"
+                  />
+                  <source
+                    media="all"
+                    srcSet={item.image}
+                    type="image/jpeg"
+                  />
+                  <img src={item.image} alt={item.title} />
+                </picture>
+                <figcaption className="hide">
+                  {item.title}
+                </figcaption>
+              </figure>
+            </LazyLoad>
           </Link>
         </div>
       );

@@ -54,10 +54,8 @@ class Store extends Component {
           && (
             <div>
               <h1 className="panel__main-heading mb-2x">
-                <Link to={`/store/${store.id}`}>
-                  <a title={store.name}>
-                    {store.name}
-                  </a>
+                <Link to={`/store/${store.id}`} title={store.name}>
+                  {store.name}
                 </Link>
               </h1>
               <StoreInfo store={store} comments={storeComments} />
