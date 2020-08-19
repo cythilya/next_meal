@@ -28,7 +28,7 @@ import {
   common,
   menu,
 } from '../data/data';
-import '../style/components/header.scss';
+import '../styles/components/header.scss';
 
 const MODAL_TYPE = {
   LOGIN: 'login',

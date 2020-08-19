@@ -12,7 +12,7 @@ import  {
   hotTopics,
   news,
 } from '../data/data';
-import '../style/index.scss';
+import '../styles/index.scss';
 
 function Page(props) {
   const { id } = props;

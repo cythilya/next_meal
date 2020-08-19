@@ -4,7 +4,7 @@ import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 import StoreControlButtons from './store_control_button';
 import { icon as iconData } from '../data/data';
-import '../style/components/card.scss';
+import '../styles/components/card.scss';
 
 class Card extends Component {
   constructor(props) {

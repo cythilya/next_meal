@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { features as featureData } from '../data/data';
-import '../style/components/feature_list.scss';
+import '../styles/components/feature_list.scss';
 
 const FeatureList = ({ features }) => {
   const {

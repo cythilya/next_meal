@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PageFull from '../components/page_full';
 import StoreDataForm from '../components/store_form';
-import '../style/components/alert.scss';
+import '../styles/components/alert.scss';
 
 import {
   saveStoreData,

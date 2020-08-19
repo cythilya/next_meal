@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { change } from 'redux-form';
 import StoreComments from './store_comments';
 import CommentDataForm from './comment_form';
-import '../style/components/store_review.scss';
+import '../styles/components/store_review.scss';
 import {
   saveCommentData,
   insertCommentData,

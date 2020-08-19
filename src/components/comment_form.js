@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
-import '../style/components/form.scss';
-import '../style/components/alert.scss';
-import '../style/components/store_info.scss';
-import '../style/components/comment_form.scss';
+import '../styles/components/form.scss';
+import '../styles/components/alert.scss';
+import '../styles/components/store_info.scss';
+import '../styles/components/comment_form.scss';
 
 const required = value => value ? undefined : '必填'
 

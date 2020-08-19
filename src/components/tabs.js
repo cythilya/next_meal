@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TabsNav from './tabs_nav';
 import TabsPanel from './tabs_panel';
-import '../style/components/tabs.scss';
+import '../styles/components/tabs.scss';
 
 const Tabs = ({ tabs, activeIndex, onClickTabNavHandler }) => {
   return (

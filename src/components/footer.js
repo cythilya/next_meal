@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import TagList from './tag_list';
-import '../style/components/footer.scss';
+import '../styles/components/footer.scss';
 
 const Footer = ({ categories, topics }) => {
   return (

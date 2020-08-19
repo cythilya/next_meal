@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import '../style/components/tag_list.scss';
+import '../styles/components/tag_list.scss';
 
 const TagList = ({ tags }) => {
   return (
