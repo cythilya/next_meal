@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
 import {
   ADD_FAV_LIST,
   DOTCH_FOOD_COOKIE_KEY,
@@ -25,8 +26,6 @@ import {
   AUTH_DOMAIN,
   PROJECT_ID,
 } from '../constants/config';
-
-const uuidv1 = require('uuid/v1');
 
 const firebase = require('firebase');
 require('firebase/firestore');
@@ -574,7 +573,7 @@ export const saveStoreData = (formData) => {
   }
 
   const data = {
-    id: uuidv1(),
+    id: uuidv4(),
     name: formData.name || '測試',
     description: formData.description || null,
     image: [

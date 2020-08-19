@@ -8,6 +8,7 @@
     "@emotion/styled": "^10.0.27",
     "@reduxjs/toolkit": "^1.4.0",
     "emotion-theming": "^10.0.27",
+    "firebase": "^7.18.0",
     "lodash": "^4.17.20",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
@@ -20,6 +21,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
+    "redux-form": "^8.3.6",
     "redux-thunk": "^2.3.0",
     "uuid": "^8.3.0"
   },

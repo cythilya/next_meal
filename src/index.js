@@ -7,7 +7,7 @@ import promise from 'redux-thunk';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { CookiesProvider } from 'react-cookie';
 import './styles/index.scss';
-import App from './App';
+import App from './containers/index';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
