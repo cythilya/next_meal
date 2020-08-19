@@ -25,15 +25,18 @@ const renderLoading = () => {
 class Store extends Component {
   componentDidMount() {
     const { dispatch, router } = this.props;
-    const { id } = router.query;
+    const { id } = this.props.match.params;
     dispatch(fetchStoreInfo(id));
     dispatch(fetchStoreComments(id));
   }
 
   componentDidUpdate(prevProps) {
-    const { dispatch, router: { query: { id } } } = this.props;
+    const {
+      dispatch,
+      match: { params: { id }},
+    } = this.props;
 
-    if (id !== prevProps.router.query.id) {
+    if (id !== prevProps.match.params.id) {
       dispatch(fetchStoreInfo(id));
       dispatch(fetchStoreComments(id));
     }
@@ -51,7 +54,7 @@ class Store extends Component {
           && (
             <div>
               <h1 className="panel__main-heading mb-2x">
-                <Link href={`/store/?id=${store.id}`}>
+                <Link to={`/store/${store.id}`}>
                   <a title={store.name}>
                     {store.name}
                   </a>

@@ -14,7 +14,7 @@ const TagList = ({ tags }) => {
               key={item.id}
               className="tag-list__item"
             >
-              <Link href={`/tag?keyword=${item.tag}`}>
+              <Link to={`/tag/${item.tag}`}>
                 <a
                   title={item.title}
                   className="tag-list__item__link"

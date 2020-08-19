@@ -141,7 +141,7 @@ class Slideshow extends Component {
           onMouseEnter={this.onMouseEnterHandler}
           onMouseLeave={this.onMouseLeaveHandler}
         >
-          <Link href={item.link}>
+          <Link to={item.link}>
             <a
               title={item.title}
               target="_blank"

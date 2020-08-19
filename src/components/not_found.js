@@ -6,19 +6,19 @@ import { Link } from 'react-router-dom';
 import Card from './card';
 import { fetchRecommendStoreList } from '../actions';
 
-const renderCards = (recommendStoresData) => {
-  return _.map(recommendStoresData, (store) => {
-    return (
-      <Card key={store.id} store={store} ref={this.card} />
-    );
-  });
-};
-
 class Notfound extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchRecommendStoreList());
   }
+
+  renderCards(recommendStoresData) {
+    return _.map(recommendStoresData, (store) => {
+      return (
+        <Card key={store.id} store={store} ref={this.card} />
+      );
+    });
+  };
 
   render() {
     const { tags } = this.props;
@@ -29,25 +29,25 @@ class Notfound extends Component {
         <h1 className="panel__main-heading">
           找不到！
         </h1>
-        <Link href="/">
+        <Link to="/">
           <a title="回「吃什麼」首頁">
             回首頁
           </a>
         </Link>
         或看熱門關鍵字
-        <Link href={`/tag?keyword=${tags[0]}`}>
+        <Link to={`/tag/${tags[0]}`}>
           <a title={tags[0]}>
             {tags[0]}
           </a>
         </Link>
         、
-        <Link href={`/tag?keyword=${tags[1]}`}>
+        <Link to={`/tag/${tags[1]}`}>
           <a title={tags[1]}>
             {tags[1]}
           </a>
         </Link>
         、
-        <Link href={`/tag?keyword=${tags[2]}`}>
+        <Link to={`/tag/${tags[2]}`}>
           <a title={tags[2]}>
             { tags[2] }
           </a>
@@ -58,7 +58,7 @@ class Notfound extends Component {
           猜你想吃
           </h1>
           <div className="card-list">
-            { renderCards(recommendStoresData) }
+            {this.renderCards(recommendStoresData)}
           </div>
         </div>
       </div>

@@ -40,7 +40,7 @@ const StoreDataForm = (props) => {
           </div>
         </div>
         <div className="item-group">
-          <Link href="/">
+          <Link to="/">
             <a
               className="button--default"
               title="回首頁"

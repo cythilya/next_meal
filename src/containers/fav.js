@@ -49,7 +49,7 @@ class Fav extends Component {
             熱門推薦
             <span className="panel__heading-deco icon-star" />
           </h1>
-          <Link href="/nearby">
+          <Link to="/nearby">
             <a
               className="panel__view-more"
               title="看更多-熱門推薦"

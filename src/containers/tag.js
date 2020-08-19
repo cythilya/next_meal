@@ -34,25 +34,24 @@ const renderLoading = () => {
 class Tag extends Component {
   componentDidMount() {
     const { dispatch, router } = this.props;
-    const { keyword } = router.query;
+    const keyword = this.props.match.params.keyword;
     keyword ? dispatch(fetchStoreListByTag(keyword)) : dispatch(fetchStoreList());
   }
 
   componentDidUpdate(prevProps) {
     const { dispatch } = this.props;
-    const keyword = this.props.router.query.keyword;
+    const keyword = this.props.match.params.keyword;
 
-    if (keyword !== prevProps.router.query.keyword) {
+    if (keyword !== prevProps.match.params.keyword) {
       dispatch(fetchStoreListByTag(keyword));
     }
   }
 
   render() {
     const { stores } = this.props;
-    const keyword = this.props.router.query.keyword;
+    const keyword = this.props.match.params.keyword;
     const isNotFound = _.isArray(stores) && _.isEmpty(stores);
     const isLoading = _.isObject(stores) && !_.isArray(stores) && _.isEmpty(stores);
-
     return (
       <Page title="標籤頁" id="tag">
         <div className="panel">

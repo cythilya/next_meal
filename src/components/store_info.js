@@ -94,7 +94,7 @@ class StoreInfo extends Component {
             store.tags.map((item) => {
               return (
                 <div key={item} className="store-info__tag-item">
-                  <Link href={`/tag?keyword=${item}`}>
+                  <Link to={`/tag/${item}`}>
                     <a
                       className="store-info__tag-link"
                       title={item}

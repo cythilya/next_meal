@@ -9,7 +9,7 @@ const StoreControlButtons = ({ store }) => {
     <div className="store-control-buttons">
       { store.booking.phone
         && (
-        <Link href={`tel:${store.booking.phone}`}>
+        <Link to={`tel:${store.booking.phone}`}>
           <a
             title={iconData.phoneBooking}
             className="button"
@@ -29,7 +29,7 @@ const StoreControlButtons = ({ store }) => {
       }
       { store.booking.online
         && (
-        <Link href={`${store.booking.online}`}>
+        <Link to={`${store.booking.online}`}>
           <a
             title={iconData.onlineBooking}
             className="button"
@@ -47,7 +47,7 @@ const StoreControlButtons = ({ store }) => {
         </Link>
         )
       }
-      <Link href={`https://www.google.com.tw/maps/search/${store.location.address}`}>
+      <Link to={`https://www.google.com.tw/maps/search/${store.location.address}`}>
         <a
           title={iconData.navigation}
           className="button"

@@ -100,7 +100,7 @@ class Header extends Component {
           key={item.title}
           className="header__menu__item"
         >
-          <Link href={item.link}>
+          <Link to={item.link}>
             <a
               title={item.title}
               className="header__menu__item__link"
@@ -207,7 +207,7 @@ class Header extends Component {
     return (
       <div className="header">
         <div className="header__nav">
-          <Link href="/">
+          <Link to="/">
             <a title={common.title}>
               <i
                 className="header__logo icon-logo"
@@ -215,7 +215,7 @@ class Header extends Component {
               />
             </a>
           </Link>
-          <Link href="/">
+          <Link to="/">
             <a
               className="header__title"
               title={common.title}

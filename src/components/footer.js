@@ -24,7 +24,7 @@ const Footer = ({ categories, topics }) => {
               _.map(topics, (item) => {
                 return (
                   <li key={item.id}>
-                    <Link href={item.link}>
+                    <Link to={item.link}>
                       <a title={item.title}>
                         {item.title}
                       </a>
