@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import Link from 'react-router-dom';
 import { withCookies } from 'react-cookie';
 import {
   addFavList,

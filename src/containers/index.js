@@ -2,8 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
-import NoSSR from 'react-no-ssr';
+import { Link } from 'react-router-dom';
 import Page from '../components/page';
 import Card from '../components/card';
 
@@ -54,11 +53,9 @@ class Index extends Component {
               看更多
             </a>
           </Link>
-          <NoSSR>
-            <div className="card-list">
-              { this.renderCards(nearbyStoresData) }
-            </div>
-          </NoSSR>
+          <div className="card-list">
+            { this.renderCards(nearbyStoresData) }
+          </div>
         </div>
         <div className="panel">
           <h1 className="panel__main-heading">
@@ -72,11 +69,9 @@ class Index extends Component {
               看更多
             </a>
           </Link>
-          <NoSSR>
-            <div className="card-list">
-              { this.renderCards(recommendStoresData) }
-            </div>
-          </NoSSR>
+          <div className="card-list">
+            { this.renderCards(recommendStoresData) }
+          </div>
         </div>
         <div className="panel">
           <h1 className="panel__main-heading">
@@ -91,11 +86,9 @@ class Index extends Component {
               看更多
             </a>
           </Link>
-          <NoSSR>
-            <div className="card-list">
-              { this.renderCards(hotStoresData) }
-            </div>
-          </NoSSR>
+          <div className="card-list">
+            { this.renderCards(hotStoresData) }
+          </div>
         </div>
       </Page>
     );

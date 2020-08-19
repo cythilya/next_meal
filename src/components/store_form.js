@@ -1,8 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import '../style/components/form.scss';
+import '../styles/components/form.scss';
 
 const StoreDataForm = (props) => {
   const {

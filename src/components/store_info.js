@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import StoreControlButtons from './store_control_button';
 import FeatureList from './feature_list';
 import Tabs from './tabs';
 import StoreReview from './store_review';
 import { icon as iconData } from '../data/data';
-import '../style/components/store_info.scss';
+import '../styles/components/store_info.scss';
 
 class StoreInfo extends Component {
   constructor(props) {

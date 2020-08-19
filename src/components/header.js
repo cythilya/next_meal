@@ -2,8 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withCookies } from 'react-cookie';
-import Link from 'next/link';
-import Router from 'next/router';
+import { Link, Router } from 'react-router-dom';
 import {
   Button,
   FormControl,

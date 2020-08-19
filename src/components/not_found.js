@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import Card from './card';
 import { fetchRecommendStoreList } from '../actions';
 

@@ -8,7 +8,7 @@ import {
   hotCategories,
   hotTopics,
 } from '../data/data';
-import '../style/index.scss';
+import '../styles/index.scss';
 
 function PageFull(props) {
   const { children } = props;

@@ -1,8 +1,7 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import NoSSR from 'react-no-ssr';
 import Header from './header';
-// import Slideshow from './slideshow';
 import Newsticker from 'react-newsticker';
 import Footer from './footer';
 import TagList from './tag_list';
@@ -14,23 +13,20 @@ import  {
 } from '../data/data';
 import '../styles/index.scss';
 
-function Page(props) {
-  const { id } = props;
-  const reverse = id === 'index' ? 'app-container--reverse' : '';
+class Page extends Component {
+  render() {
+    const { id } = this.props;
+    const reverse = id === 'index' ? 'app-container--reverse' : '';
 
-  return (
-    <div>
+    return (
       <div>
         <Header />
-        {/* <NoSSR>
-          { id === 'index' && <Slideshow interval={1000} pause={4000} />}
-        </NoSSR> */}
         <div className="newsticker">
           <Newsticker news={news} />
         </div>
         <div className={`app-container ${reverse}`}>
           <div className="app-main-content">
-            { props.children }
+            { this.props.children }
           </div>
           <div className="app-menu">
             <div className="panel">
@@ -43,8 +39,8 @@ function Page(props) {
         </div>
         <Footer categories={categories} topics={hotTopics} />
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 Page.propTypes = {

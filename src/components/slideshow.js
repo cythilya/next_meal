@@ -2,10 +2,10 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import { fetchSlidesData } from '../actions/index';
-import '../style/components/slideshow.scss';
+import '../styles/components/slideshow.scss';
 
 const SLIDEHSOW_WIDTH = 720;
 

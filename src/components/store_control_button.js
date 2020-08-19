@@ -1,8 +1,8 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { icon as iconData } from '../data/data';
-import '../style/components/store_control_button.scss';
+import '../styles/components/store_control_button.scss';
 
 const StoreControlButtons = ({ store }) => {
   return (

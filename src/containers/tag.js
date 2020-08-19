@@ -1,9 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link, withRouter } from 'react-router-dom';
 import Page from '../components/page';
 import StoreItem from '../components/store_item';
 import Notfound from '../components/not_found';

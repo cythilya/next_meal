@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../style/components/store_comments.scss';
+import '../styles/components/store_comments.scss';
 
 const StoreComments = ({ comments }) => {
   const commentList = comments[0].comments || [];
