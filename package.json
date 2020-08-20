@@ -35,7 +35,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lighthouse": "./node_modules/lighthouse/lighthouse-cli/index.js $url"
+    "lighthouse": "./node_modules/lighthouse/lighthouse-cli/index.js --output-path=./reports/lighthouse-results.html $url"
   },
   "browserslist": {
     "production": [
