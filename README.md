@@ -1,2 +1,9 @@
 # next_meal
-dotch_food_v3
+
+## Lighthouse
+
+Run lighthouse for performance testing with given URL.
+
+```bash
+yarn lighthouse http://localhost:3000/fav
+```
