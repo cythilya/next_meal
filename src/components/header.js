@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withCookies } from 'react-cookie';
-import { Link, Router } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {
   Button,
   FormControl,
@@ -78,7 +78,7 @@ class Header extends Component {
   onSeachHandler(e) {
     if (e.key === 'Enter') {
       const keyword = e.target.value;
-      Router.push(`/tag?keyword=${keyword}`);
+      this.props.history.push(`/tag/${keyword}`);
     }
   }
 
@@ -229,4 +229,4 @@ class Header extends Component {
   }
 }
 
-export default withCookies(connect(state => state)(Header));
+export default withRouter(withCookies(connect(state => state)(Header)));

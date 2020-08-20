@@ -23,10 +23,10 @@ class FavList extends Component {
 
   componentDidUpdate(preProps) {
     const { user: { userInfo: { id: prevUserID }}} = preProps;
-    const { dispatch, user: { userInfo: { id }}} = this.props;
+    const { dispatch, user: { userInfo: { id: userID }}} = this.props;
 
-    if (id && (prevUserID !== id)) {
-      dispatch(fetchFavList(id));
+    if (userID && (prevUserID !== userID)) {
+      dispatch(fetchFavList(userID));
     }
   }
 

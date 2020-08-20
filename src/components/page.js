@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Header from './header';
+import { withCookies } from 'react-cookie';
+import { withRouter } from 'react-router-dom';
 import Newsticker from 'react-newsticker';
+import Header from './header';
 import Footer from './footer';
 import TagList from './tag_list';
+import { DOTCH_FOOD_COOKIE_KEY } from '../constants';
 import  {
   categories,
   hotCategories,
@@ -14,6 +17,14 @@ import  {
 import '../styles/index.scss';
 
 class Page extends Component {
+  componentDidMount() {
+    const { dispatch, cookies: { cookies } } = this.props;
+    // restore user info from cookie when reload page
+    if (!cookies || !cookies[DOTCH_FOOD_COOKIE_KEY]) {
+      this.props.history.push(`/`);
+    }
+  }
+
   render() {
     const { id } = this.props;
     const reverse = id === 'index' ? 'app-container--reverse' : '';
@@ -47,4 +58,4 @@ Page.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-export default connect(state => state)(Page);
+export default withRouter(withCookies(connect(state => state)(Page)));

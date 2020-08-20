@@ -708,7 +708,7 @@ export const login = (account, password, loginCallback) => {
         loginCallback();
         return { isLogin: true, userInfo: userInfo[0]};
       } else {
-        return { isLogin: false, userInfo: null };
+        return { isLogin: false, userInfo: { id: null } };
       }
     })
     .catch(function(error) {
