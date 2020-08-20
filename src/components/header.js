@@ -99,6 +99,7 @@ class Header extends Component {
         <div
           key={item.title}
           className="header__menu__item"
+          id={item.id}
         >
           <Link
             to={item.link}
@@ -185,6 +186,7 @@ class Header extends Component {
           <ModalFooter>
             <Button
               variant="ghost"
+              id="submit"
               onClick={() => {
                 const { account, password } = this.state;
                 const result = dispatch(login(account, password, () => {
