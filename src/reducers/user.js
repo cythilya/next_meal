@@ -7,10 +7,12 @@ import {
 
 const intialState = {
   isLogin: false,
-  userInfo: null,
+  userInfo: {
+    id: null,
+  },
 }
 
-export default function (state = {}, action) {
+export default function (state = intialState, action) {
   switch (action.type) {
     case LOGIN:
       const userInfoString = JSON.stringify(action.payload.userInfo);

@@ -21,14 +21,12 @@ class FavList extends Component {
     this.renderNoDataHint = this.renderNoDataHint.bind(this);
   }
 
-  componentDidMount() {
-    const { dispatch, cookies: { cookies } } = this.props;
+  componentDidUpdate(preProps) {
+    const { user: { userInfo: { id: prevUserID }}} = preProps;
+    const { dispatch, user: { userInfo: { id }}} = this.props;
 
-    // restore user info from cookie when reload page
-    if (cookies && cookies[DOTCH_FOOD_COOKIE_KEY]) {
-      const userInfo = JSON.parse(cookies[DOTCH_FOOD_COOKIE_KEY]);
-      userInfo && userInfo.id && dispatch(fetchFavList(userInfo.id));
-      dispatch(restoreUserInfo(userInfo));
+    if (id && (prevUserID !== id)) {
+      dispatch(fetchFavList(id));
     }
   }
 
