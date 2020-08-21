@@ -23,10 +23,8 @@ import {
   restoreUserInfo,
 } from '../actions/index';
 import { DOTCH_FOOD_COOKIE_KEY } from '../constants';
-import {
-  common,
-  menu,
-} from '../data/data';
+import router from '../constants/router';
+import { product } from '../constants/config';
 import '../styles/components/header.scss';
 
 const MODAL_TYPE = {
@@ -57,7 +55,12 @@ class Header extends Component {
 
     // restore user info from cookie when reload page
     if (cookies && cookies[DOTCH_FOOD_COOKIE_KEY]) {
-      dispatch(restoreUserInfo(JSON.parse(cookies[DOTCH_FOOD_COOKIE_KEY])));
+      try {
+        dispatch(restoreUserInfo(JSON.parse(cookies[DOTCH_FOOD_COOKIE_KEY])));
+      } catch(e) {
+        console.log(e);
+        dispatch(logout());
+      }
     } else {
       dispatch(logout());
     }
@@ -93,7 +96,7 @@ class Header extends Component {
   renderMenuItems() {
     const { isLogin } = this.props.user;
 
-    return _.map(menu, (item) => {
+    return _.map(router, (item) => {
       return (
         (isLogin === item.needLogin) &&
         <div
@@ -208,18 +211,18 @@ class Header extends Component {
     return (
       <div className="header">
         <div className="header__nav">
-          <Link to="/" title={common.title}>
+          <Link to="/" title={product.title}>
             <i
               className="header__logo icon-logo"
-              aria-label={common.title}
+              aria-label={product.title}
             />
           </Link>
           <Link
             to="/"
             className="header__title"
-            title={common.title}
+            title={product.title}
           >
-            { common.title }
+            { product.title }
           </Link>
         </div>
           {this.renderSearchBox()}

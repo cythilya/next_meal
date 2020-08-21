@@ -36,8 +36,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lighthouse": "./node_modules/lighthouse/lighthouse-cli/index.js --output-path=./reports/lighthouse-results.html $url",
-    "perf": "node e2e_testing/test.js"
+    "lighthouse": "./node_modules/lighthouse/lighthouse-cli/index.js --output-path=./reports/performance/lighthouse-results.html $url",
+    "perf-dev": "node performance_testing/test.js --env=DEV",
+    "perf-prod": "node performance_testing/test.js --env=PROD"
   },
   "browserslist": {
     "production": [
