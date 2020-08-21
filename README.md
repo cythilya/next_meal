@@ -19,7 +19,7 @@ yarn perf-dev
 Test the whole site in production environment.
 
 ```bash
-yarn lperf-prod
+yarn perf-prod
 ```
 
 ## Demo
