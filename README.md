@@ -1,11 +1,25 @@
 # next_meal
 
-## Lighthouse
+## Performance Testing
 
-Run lighthouse for performance testing with given URL.
+Performance Testing by using Lighthouse.
+
+Run lighthouse for performance testing for a given URL.
 
 ```bash
-yarn lighthouse http://localhost:3000/fav
+yarn lighthouse https://next-meal.vercel.app/
+```
+
+Test the whole site in development environment.
+
+```bash
+yarn perf-dev
+```
+
+Test the whole site in production environment.
+
+```bash
+yarn lperf-prod
 ```
 
 ## Demo
