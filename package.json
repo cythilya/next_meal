@@ -9,6 +9,7 @@
     "@reduxjs/toolkit": "^1.4.0",
     "emotion-theming": "^10.0.27",
     "firebase": "^7.18.0",
+    "fs": "^0.0.1-security",
     "lighthouse": "^6.2.0",
     "lodash": "^4.17.20",
     "node-sass": "^4.14.1",
