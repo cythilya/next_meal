@@ -45,6 +45,7 @@ class Header extends Component {
     this.onSeachHandler = this.onSeachHandler.bind(this);
     this.onSearchInputChange = this.onSearchInputChange.bind(this);
     this.renderLoginModal = this.renderLoginModal.bind(this);
+    this.renderLogo = this.renderLogo.bind(this);
     this.renderMenuItems = this.renderMenuItems.bind(this);
     this.renderMenuList = this.renderMenuList.bind(this);
     this.renderSearchBox = this.renderSearchBox.bind(this);
@@ -205,30 +206,40 @@ class Header extends Component {
     )
   }
 
+  renderLogo() {
+    return (
+      <div className="header__nav">
+      <Link to="/" title={product.title}>
+        <i
+          className="header__logo icon-logo"
+          aria-label={product.title}
+        />
+      </Link>
+      <Link
+        to="/"
+        className="header__title"
+        title={product.title}
+      >
+        { product.title }
+      </Link>
+    </div>
+    )
+  }
+
   render() {
     const { modalType } = this.state;
 
     return (
       <div className="header">
-        <div className="header__nav">
-          <Link to="/" title={product.title}>
-            <i
-              className="header__logo icon-logo"
-              aria-label={product.title}
-            />
-          </Link>
-          <Link
-            to="/"
-            className="header__title"
-            title={product.title}
-          >
-            { product.title }
-          </Link>
-        </div>
+        <div className="header__main">
+          {this.renderLogo()}
           {this.renderSearchBox()}
+        </div>
+        <div className="header__control">
           {this.renderMenuList()}
           {this.renderLoginModal()}
-          {modalType === MODAL_TYPE.LOGON && this.renderLoginModal()}
+        </div>
+        {modalType === MODAL_TYPE.LOGON && this.renderLoginModal()}
       </div>
     );
   }
