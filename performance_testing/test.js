@@ -1,6 +1,7 @@
 const fs = require('fs');
 const puppeteer = require('puppeteer');
 const lighthouse = require('lighthouse');
+const TableBuilder = require('table-builder');;
 const config = require('lighthouse/lighthouse-core/config/lr-desktop-config.js');
 const reportGenerator = require('lighthouse/lighthouse-core/report/report-generator');
 const DEV_HOST = 'http://localhost:3000';
@@ -51,6 +52,7 @@ const TEST_PAGES = [
     try {
         browser = await navigateToPizzaProfile();
         page = (await browser.pages())[0];
+        const records = [];
 
         console.log('Running Lighthouse...');
 
@@ -61,21 +63,50 @@ const TEST_PAGES = [
             logLevel: 'info',
             disableDeviceEmulation: true,
             chromeFlags: ['--disable-mobile-emulation']
-        }, config);
-        const json = reportGenerator.generateReport(report.lhr, 'json');
-        const html = reportGenerator.generateReport(report.lhr, 'html');
-        console.log(`Lighthouse scores: ${report.lhr.score}`);
-        console.log('Writing results...');
-        fs.writeFileSync(`reports/performance/lighthouse-results-${TEST_PAGES[i].id}.json`, json);
-        fs.writeFileSync(`reports/performance/lighthouse-results-${TEST_PAGES[i].id}.html`, html);
-      }
+          }, config);
+          const json = reportGenerator.generateReport(report.lhr, 'json');
+          const html = reportGenerator.generateReport(report.lhr, 'html');
+          const categories = Object.values(report.lhr.categories);
+          const record = {};
+
+          console.log(`Review results for ${TEST_PAGES[i].id}...`);
+          record['Page'] =`<a href='./lighthouse-results-${TEST_PAGES[i].id}.html' target='blank'>${TEST_PAGES[i].id}</a>`;
+
+          for(let i = 0; i < categories.length; i += 1) {
+            const key = `${categories[i].title}`;
+            record[key] = categories[i].score;
+            console.log(`Lighthouse scores: ${categories[i].title} ${categories[i].score}`);
+          }
+
+          records.push(record);
+
+          console.log('Writing results...');
+          fs.writeFileSync(`reports/performance/lighthouse-results-${TEST_PAGES[i].id}.json`, json);
+          fs.writeFileSync(`reports/performance/lighthouse-results-${TEST_PAGES[i].id}.html`, html);
+        }
+
+      const headers = {
+        'Page' : 'Page',
+        'Performance': 'Performance',
+        'Accessibility': 'Accessibility',
+        'Best Practices': 'Best Practices',
+        'SEO' : 'SEO',
+        'Progressive Web App': 'Progressive Web App'
+      };
+
+      const table = (new TableBuilder({'class': 'repor-table'}))
+        .setHeaders(headers) // see above json headers section
+        .setData(records) // see above json data section
+        .render()
+
+      fs.writeFileSync(`reports/performance/lighthouse-report-index.html`, table);
 
       console.log('Done!');
     } catch (error) {
-        console.error('Error!', error);
+      console.error('Error!', error);
     } finally {
-        await page.close();
-        await browser.close();
+      await page.close();
+      await browser.close();
     }
 })();
 
