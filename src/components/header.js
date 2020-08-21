@@ -23,7 +23,7 @@ import {
   restoreUserInfo,
 } from '../actions/index';
 import { DOTCH_FOOD_COOKIE_KEY } from '../constants';
-import router from '../constants/router';
+import { menu } from '../constants/router';
 import { product } from '../constants/config';
 import '../styles/components/header.scss';
 
@@ -97,7 +97,7 @@ class Header extends Component {
   renderMenuItems() {
     const { isLogin } = this.props.user;
 
-    return _.map(router, (item) => {
+    return _.map(menu, (item) => {
       return (
         (isLogin === item.needLogin) &&
         <div

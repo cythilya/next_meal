@@ -8,6 +8,7 @@ import Header from './header';
 import Footer from './footer';
 import TagList from './tag_list';
 import { DOTCH_FOOD_COOKIE_KEY } from '../constants';
+import router from '../constants/router';
 import  {
   categories,
   hotCategories,
@@ -18,9 +19,14 @@ import '../styles/index.scss';
 
 class Page extends Component {
   componentDidMount() {
-    const { dispatch, cookies: { cookies } } = this.props;
+    const {
+      cookies: { cookies },
+      dispatch,
+      id,
+    } = this.props;
+
     // restore user info from cookie when reload page
-    if (!cookies || !cookies[DOTCH_FOOD_COOKIE_KEY]) {
+    if (!cookies || !cookies[DOTCH_FOOD_COOKIE_KEY] && router[id].needLogin) {
       this.props.history.push(`/`);
     }
   }
