@@ -1,7 +1,6 @@
 {
   "name": "next-meal",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.34",
@@ -32,7 +31,7 @@
   "main": "index.js",
   "repository": "git@github.com:cythilya/next_meal.git",
   "author": "summer_tang <cythilya@gmail.com>",
-  "license": "MIT",
+  "license": "GNU",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
