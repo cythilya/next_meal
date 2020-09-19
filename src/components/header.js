@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withCookies } from 'react-cookie';
 import { Link, withRouter } from 'react-router-dom';
+import ReactGA from 'react-ga';
+import Perfume from 'perfume.js';
 import {
   Button,
   FormControl,
@@ -29,7 +31,67 @@ import '../styles/components/header.scss';
 
 const MODAL_TYPE = {
   LOGIN: 'login',
-}
+};
+
+const analyticsTracker = function ({ metricName, data, duration }) {
+  switch (metricName) {
+    case 'navigationTiming':
+      if (data && data.timeToFirstByte) {
+        ReactGA.event({
+          category: 'performance by perfume',
+          action: 'navigationTiming',
+          value: Number(data.timeToFirstByte),
+          label: `${metricName}: ${data.timeToFirstByte}`,
+        });
+      }
+      break;
+    case 'networkInformation':
+      if (data && data.effectiveType) {
+        ReactGA.event({
+          category: 'performance by perfume',
+          action: 'networkInformation',
+          value: Number(data.effectiveType),
+          label: `${metricName}: ${data.effectiveType}`,
+        });
+      }
+      break;
+    case 'fp':
+    case 'fcp':
+    case 'fid':
+    case 'lcp':
+    case 'lcpFinal':
+    case 'cls':
+    case 'clsFinal':
+    case 'tbt':
+    case 'tbt5S':
+    case 'tbt10S':
+    case 'tbtFinal':
+      const duration = Number(data);
+      console.log(`${metricName}: ${duration}`);
+      ReactGA.event({
+        category: 'performance by perfume',
+        action: metricName,
+        value: duration,
+        label: `${metricName}: ${duration}`,
+      });
+      break;
+    default:
+      break;
+  }
+};
+
+const perfume = new Perfume({
+  firstPaint: true,
+  firstContentfulPaint: true,
+  firstInputDelay: true,
+  timeToInteractive: true,
+  logging: true,
+  googleAnalytics: {
+    enable: true,
+    timingVar: 'userId',
+  },
+  analyticsTracker,
+});
 
 class Header extends Component {
   constructor(props) {
@@ -49,10 +111,25 @@ class Header extends Component {
     this.renderMenuItems = this.renderMenuItems.bind(this);
     this.renderMenuList = this.renderMenuList.bind(this);
     this.renderSearchBox = this.renderSearchBox.bind(this);
+
+    perfume.start('AppAfterPaint');
   }
 
   componentDidMount() {
-    const { dispatch, cookies: { cookies } } = this.props;
+    const {
+      dispatch,
+      cookies: { cookies },
+    } = this.props;
+
+    const userId = this.props.user.isLogin ? this.props.user.userInfo.id : 'unknown user';
+
+    ReactGA.initialize('UA-44647801-7', {
+      gaOptions: {
+        userId,
+      },
+    });
+
+    perfume.endPaint('AppAfterPaint');
 
     // restore user info from cookie when reload page
     if (cookies && cookies[DOTCH_FOOD_COOKIE_KEY]) {
@@ -65,6 +142,29 @@ class Header extends Component {
     } else {
       dispatch(logout());
     }
+  }
+
+  componentDidUpdate({ location: prevLocation }) {
+    const {
+      location: { pathname, search },
+    } = this.props;
+    const isDifferentPathname = pathname !== prevLocation.pathname;
+    const isDifferentSearch = search !== prevLocation.search;
+
+    if (isDifferentPathname || isDifferentSearch) {
+      this.logPageChange(pathname, search);
+    }
+  }
+
+  logPageChange(pathname, search = '') {
+    const page = pathname + search;
+    const { location } = window;
+    ReactGA.set({
+      page,
+      location: `${location.origin}${page}`,
+      ...this.props.options,
+    });
+    ReactGA.pageview(page);
   }
 
   onSearchInputChange(keyword) {
