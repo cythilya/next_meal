@@ -35,9 +35,14 @@ if (!firebase.apps.length) {
     apiKey: API_KEY,
     authDomain: AUTH_DOMAIN,
     projectId: PROJECT_ID,
+    appId: '1:704347748284:web:b8810b7047523654c95db9',
   });
 }
 
+require('firebase/performance');
+const perf = firebase.performance();
+
+console.log(perf)
 export const fetchStoreList = () => {
   return {
     type: FETCH_STORE_LIST,

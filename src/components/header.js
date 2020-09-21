@@ -66,8 +66,16 @@ const analyticsTracker = function ({ metricName, data, duration }) {
     case 'tbt5S':
     case 'tbt10S':
     case 'tbtFinal':
-      const duration = Number(data);
+      const duration = Math.round(Number(data));
       console.log(`${metricName}: ${duration}`);
+
+      ReactGA.timing({
+        category: 'performance by perfume (timing)',
+        variable: metricName,
+        value: duration, // in milliseconds
+        label: `${metricName}: ${duration}`,
+      });
+
       ReactGA.event({
         category: 'performance by perfume',
         action: metricName,
