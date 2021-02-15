@@ -27,7 +27,7 @@ const renderLoading = () => {
   );
 };
 
-const checkNotFoundStoreStatus = (store) => {
+const checkNotFoundStoreStatus = (stores) => {
   return _.isArray(stores) && _.isEmpty(stores)
 };
 
