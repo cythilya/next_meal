@@ -6,11 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Page from '../components/page';
 import StoreItem from '../components/store_item';
 import Notfound from '../components/not_found';
-
-import {
-  fetchStoreList,
-  fetchStoreListByTag,
-} from '../actions/index';
+import { fetchStoreListByTag } from '../actions/index';
 import { hotTags } from '../data/data';
 
 const renderStores = (stores) => {
@@ -33,13 +29,10 @@ const renderLoading = () => {
 
 class Tag extends Component {
   componentDidMount() {
-    const {
-      fetchStoreList,
-      fetchStoreListByTag,
-    } = this.props;
+    const { fetchStoreListByTag } = this.props;
     const keyword = this.props.match.params.keyword;
 
-    keyword ? fetchStoreListByTag(keyword) : fetchStoreList();
+    fetchStoreListByTag(keyword)
   }
 
   componentDidUpdate(prevProps) {
@@ -86,7 +79,6 @@ Tag.propTypes = {
 };
 
 const mapDispatchToProps = {
-  fetchStoreList,
   fetchStoreListByTag,
 };
 
