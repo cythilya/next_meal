@@ -27,6 +27,10 @@ const renderLoading = () => {
   );
 };
 
+const checkNotFoundStoreStatus = (store) => {
+  return _.isArray(stores) && _.isEmpty(stores)
+};
+
 class Tag extends Component {
   componentDidMount() {
     const { fetchStoreListByTag } = this.props;
@@ -48,7 +52,7 @@ class Tag extends Component {
 
   renderView() {
     const { stores } = this.props;
-    const isNotFound = _.isArray(stores) && _.isEmpty(stores);
+    const isNotFound = checkNotFoundStoreStatus(stores);
     const isLoading = _.isObject(stores) && !_.isArray(stores) && _.isEmpty(stores);
 
     if (isLoading) {
@@ -62,7 +66,7 @@ class Tag extends Component {
   render() {
     const { stores } = this.props;
     const keyword = this.props.match.params.keyword;
-    const isNotFound = _.isArray(stores) && _.isEmpty(stores);
+    const isNotFound = checkNotFoundStoreStatus(stores);
 
     return (
       <Page title="標籤頁" id="tag">
