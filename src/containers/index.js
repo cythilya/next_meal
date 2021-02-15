@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Page from '../components/page';
 import Card from '../components/card';
@@ -35,10 +36,13 @@ class Index extends Component {
 
   render() {
     const {
-      hotStoresData,
-      nearbyStoresData,
-      recommendStoresData,
-    } = this.props.filteredStores;
+      filteredStores: {
+        hotStoresData,
+        nearbyStoresData,
+        recommendStoresData,
+      },
+      t,
+    } = this.props;
 
     return (
       <Page title="首頁" id="index">
@@ -52,7 +56,7 @@ class Index extends Component {
             className="panel__view-more"
             title="看更多-離我最近"
           >
-            看更多
+            {t('labels:viewMore')}
           </Link>
           <div className="card-list">
             { this.renderCards(nearbyStoresData) }
@@ -63,7 +67,7 @@ class Index extends Component {
             猜你想吃
           </h1>
           <Link to="/nearby" className="panel__view-more" title="看更多-猜你想吃">
-            看更多
+            {t('labels:viewMore')}
           </Link>
           <div className="card-list">
             { this.renderCards(recommendStoresData) }
@@ -75,7 +79,7 @@ class Index extends Component {
             <span className="panel__heading-deco icon-star" />
           </h1>
           <Link to="/nearby" className="panel__view-more" title="看更多-熱門推薦">
-            看更多
+            {t('labels:viewMore')}
           </Link>
           <div className="card-list">
             { this.renderCards(hotStoresData) }
@@ -98,4 +102,4 @@ Index.defaultProps = {
   recommendStoresData: [],
 };
 
-export default connect(state => state)(Index);
+export default withTranslation()(connect(state => state)(Index));
