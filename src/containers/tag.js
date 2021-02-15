@@ -46,11 +46,24 @@ class Tag extends Component {
     }
   }
 
+  renderView() {
+    const { stores } = this.props;
+    const isNotFound = _.isArray(stores) && _.isEmpty(stores);
+    const isLoading = _.isObject(stores) && !_.isArray(stores) && _.isEmpty(stores);
+
+    if (isLoading) {
+      return renderLoading();
+    } else if (isNotFound) {
+      return renderNotFound();
+    }
+    return renderStores(stores)
+  }
+
   render() {
     const { stores } = this.props;
     const keyword = this.props.match.params.keyword;
     const isNotFound = _.isArray(stores) && _.isEmpty(stores);
-    const isLoading = _.isObject(stores) && !_.isArray(stores) && _.isEmpty(stores);
+
     return (
       <Page title="標籤頁" id="tag">
         <div className="panel">
@@ -63,9 +76,7 @@ class Tag extends Component {
               </h1>
             )
           }
-          { renderStores(stores) }
-          { isNotFound && renderNotFound() }
-          { isLoading && renderLoading() }
+          { this.renderView() }
         </div>
       </Page>
     );
