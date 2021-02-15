@@ -2,7 +2,6 @@ import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import {
   ADD_FAV_LIST,
-  DOTCH_FOOD_COOKIE_KEY,
   FETCH_FAV_LIST,
   FETCH_HOT_STORE_LIST,
   FETCH_NEARBY_STORE_LIST,
@@ -42,7 +41,6 @@ if (!firebase.apps.length) {
 require('firebase/performance');
 const perf = firebase.performance();
 
-console.log(perf)
 export const fetchStoreList = () => {
   return {
     type: FETCH_STORE_LIST,

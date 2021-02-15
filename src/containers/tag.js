@@ -1,60 +1,61 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { createContext, useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
-import Page from '../components/page';
-import StoreItem from '../components/store_item';
+import { fetchStoreListByTag } from '../actions/index';
 import Notfound from '../components/not_found';
+import Page from '../components/page';
+import Store from '../components/store_item';
+import { HOT_TAGS } from '../data/data';
 
-import {
-  fetchStoreList,
-  fetchStoreListByTag,
-} from '../actions/index';
-import { hotTags } from '../data/data';
+const StoreListContext = createContext();
 
-const renderStores = (stores) => {
-  return _.map(stores, (store) => {
-    return (
-      <StoreItem key={store.id} store={store} />
-    );
-  });
-};
+const Stores = () => {
+  const stores = useContext(StoreListContext);
 
-const renderNotFound = () => {
-  return (<Notfound tags={hotTags.slice(0, 3)} />);
-};
-
-const renderLoading = () => {
-  return (
-    <div className="icon-loading store-item__loading" />
+  return _.map(stores, (store) =>
+    <Store key={store.id} store={store} />
   );
 };
 
-class Tag extends Component {
-  componentDidMount() {
-    const { dispatch, router } = this.props;
-    const keyword = this.props.match.params.keyword;
-    keyword ? dispatch(fetchStoreListByTag(keyword)) : dispatch(fetchStoreList());
+const renderNotFound = () => {
+  return (<Notfound tags={HOT_TAGS.slice(0, 3)} />);
+};
+
+const renderLoading = () => {
+  return <div className="icon-loading store-item__loading" />;
+};
+
+const checkNotFoundStoreStatus = (stores) => {
+  return _.isArray(stores) && _.isEmpty(stores)
+};
+
+const renderView = (stores) => {
+  const isNotFound = checkNotFoundStoreStatus(stores);
+  const isLoading = _.isObject(stores) && !_.isArray(stores) && _.isEmpty(stores);
+
+  if (isLoading) {
+    return renderLoading();
+  } else if (isNotFound) {
+    return renderNotFound();
   }
+}
 
-  componentDidUpdate(prevProps) {
-    const { dispatch } = this.props;
-    const keyword = this.props.match.params.keyword;
+const Tag = () => {
+  const dispatch = useDispatch();
+  const { keyword } = useParams();
+  const stores = useSelector(state => state.stores);
+  const isNotFound = checkNotFoundStoreStatus(stores);
 
-    if (keyword !== prevProps.match.params.keyword) {
-      dispatch(fetchStoreListByTag(keyword));
-    }
-  }
+  useEffect(() => {
+    dispatch(fetchStoreListByTag(keyword));
+  }, [keyword]);
 
-  render() {
-    const { stores } = this.props;
-    const keyword = this.props.match.params.keyword;
-    const isNotFound = _.isArray(stores) && _.isEmpty(stores);
-    const isLoading = _.isObject(stores) && !_.isArray(stores) && _.isEmpty(stores);
-    return (
-      <Page title="標籤頁" id="tag">
-        <div className="panel">
+  return (
+    <Page title="標籤頁" id="tag">
+      <div className="panel">
+        <StoreListContext.Provider value={stores}>
           { !isNotFound
             && (
               <h1 className="panel__main-heading mb-2x">
@@ -64,19 +65,18 @@ class Tag extends Component {
               </h1>
             )
           }
-          { renderStores(stores) }
-          { isNotFound && renderNotFound() }
-          { isLoading && renderLoading() }
-        </div>
-      </Page>
-    );
-  }
+          <Stores />
+          {renderView(stores)}
+          </StoreListContext.Provider>
+      </div>
+    </Page>
+  )
 }
 
-// Tag.propTypes = {
-//   nearbyStoresData: PropTypes.array.isRequired,
-//   recommendStoresData: PropTypes.array.isRequired,
-//   hotStoresData: PropTypes.array.isRequired,
-// };
+Tag.propTypes = {
+  hotStoresData: PropTypes.array.isRequired,
+  nearbyStoresData: PropTypes.array.isRequired,
+  recommendStoresData: PropTypes.array.isRequired,
+};
 
-export default withRouter(connect(state => state)(Tag));
+export default Tag;

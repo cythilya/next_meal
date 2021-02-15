@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 import Page from '../components/page';
 import StoreInfo from '../components/store_info';
 import Notfound from '../components/not_found';
-import { hotTags } from '../data/data';
+import { HOT_TAGS } from '../data/data';
 import {
   fetchStoreInfo,
   fetchStoreComments,
 } from '../actions/index';
 
 const renderNotFound = () => {
-  return (<Notfound tags={hotTags.slice(0, 3)} />);
+  return (<Notfound tags={HOT_TAGS.slice(0, 3)} />);
 };
 
 const renderLoading = () => {
