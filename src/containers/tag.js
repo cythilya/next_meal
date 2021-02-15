@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useEffect } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
@@ -9,12 +9,14 @@ import Page from '../components/page';
 import Store from '../components/store_item';
 import { HOT_TAGS } from '../data/data';
 
-const renderStores = (stores) => {
-  return _.map(stores, (store) => {
-    return (
-      <Store key={store.id} store={store} />
-    );
-  });
+const StoreListContext = createContext();
+
+const Stores = () => {
+  const stores = useContext(StoreListContext);
+
+  return _.map(stores, (store) =>
+    <Store key={store.id} store={store} />
+  );
 };
 
 const renderNotFound = () => {
@@ -22,9 +24,7 @@ const renderNotFound = () => {
 };
 
 const renderLoading = () => {
-  return (
-    <div className="icon-loading store-item__loading" />
-  );
+  return <div className="icon-loading store-item__loading" />;
 };
 
 const checkNotFoundStoreStatus = (stores) => {
@@ -40,7 +40,6 @@ const renderView = (stores) => {
   } else if (isNotFound) {
     return renderNotFound();
   }
-  return renderStores(stores);
 }
 
 const Tag = () => {
@@ -56,16 +55,19 @@ const Tag = () => {
   return (
     <Page title="標籤頁" id="tag">
       <div className="panel">
-        { !isNotFound
-          && (
-            <h1 className="panel__main-heading mb-2x">
-              {
-                keyword
-              }
-            </h1>
-          )
-        }
-        { renderView(stores) }
+        <StoreListContext.Provider value={stores}>
+          { !isNotFound
+            && (
+              <h1 className="panel__main-heading mb-2x">
+                {
+                  keyword
+                }
+              </h1>
+            )
+          }
+          <Stores />
+          {renderView(stores)}
+          </StoreListContext.Provider>
       </div>
     </Page>
   )
