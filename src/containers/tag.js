@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { fetchStoreListByTag } from '../actions/index';
+import Notfound from '../components/not_found';
 import Page from '../components/page';
 import StoreItem from '../components/store_item';
-import Notfound from '../components/not_found';
-import { fetchStoreListByTag } from '../actions/index';
 import { hotTags } from '../data/data';
 
 const renderStores = (stores) => {
@@ -31,60 +31,44 @@ const checkNotFoundStoreStatus = (stores) => {
   return _.isArray(stores) && _.isEmpty(stores)
 };
 
-class Tag extends Component {
-  componentDidMount() {
-    const { fetchStoreListByTag } = this.props;
-    const keyword = this.props.match.params.keyword;
+const renderView = (stores) => {
+  const isNotFound = checkNotFoundStoreStatus(stores);
+  const isLoading = _.isObject(stores) && !_.isArray(stores) && _.isEmpty(stores);
 
-    fetchStoreListByTag(keyword)
+  if (isLoading) {
+    return renderLoading();
+  } else if (isNotFound) {
+    return renderNotFound();
   }
+  return renderStores(stores);
+}
 
-  componentDidUpdate(prevProps) {
-    const {
-      fetchStoreListByTag,
-      match: { params: { keyword }}
-    } = this.props;
+const Tag = () => {
+  const dispatch = useDispatch();
+  const { keyword } = useParams();
+  const stores = useSelector(state => state.stores);
+  const isNotFound = checkNotFoundStoreStatus(stores);
 
-    if (keyword !== prevProps.match.params.keyword) {
-      fetchStoreListByTag(keyword);
-    }
-  }
+  useEffect(() => {
+    dispatch(fetchStoreListByTag(keyword));
+  }, [keyword]);
 
-  renderView() {
-    const { stores } = this.props;
-    const isNotFound = checkNotFoundStoreStatus(stores);
-    const isLoading = _.isObject(stores) && !_.isArray(stores) && _.isEmpty(stores);
-
-    if (isLoading) {
-      return renderLoading();
-    } else if (isNotFound) {
-      return renderNotFound();
-    }
-    return renderStores(stores)
-  }
-
-  render() {
-    const { stores } = this.props;
-    const keyword = this.props.match.params.keyword;
-    const isNotFound = checkNotFoundStoreStatus(stores);
-
-    return (
-      <Page title="標籤頁" id="tag">
-        <div className="panel">
-          { !isNotFound
-            && (
-              <h1 className="panel__main-heading mb-2x">
-                {
-                  keyword
-                }
-              </h1>
-            )
-          }
-          { this.renderView() }
-        </div>
-      </Page>
-    );
-  }
+  return (
+    <Page title="標籤頁" id="tag">
+      <div className="panel">
+        { !isNotFound
+          && (
+            <h1 className="panel__main-heading mb-2x">
+              {
+                keyword
+              }
+            </h1>
+          )
+        }
+        { renderView(stores) }
+      </div>
+    </Page>
+  )
 }
 
 Tag.propTypes = {
@@ -93,11 +77,4 @@ Tag.propTypes = {
   recommendStoresData: PropTypes.array.isRequired,
 };
 
-const mapDispatchToProps = {
-  fetchStoreListByTag,
-};
-
-export default withRouter(connect(
-  state => state,
-  mapDispatchToProps,
-)(Tag));
+export default Tag;
