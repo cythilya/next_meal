@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Page from '../components/page';
 import StoreItem from '../components/store_item';
 import Notfound from '../components/not_found';
@@ -33,17 +33,23 @@ const renderLoading = () => {
 
 class Tag extends Component {
   componentDidMount() {
-    const { dispatch, router } = this.props;
+    const {
+      fetchStoreList,
+      fetchStoreListByTag,
+    } = this.props;
     const keyword = this.props.match.params.keyword;
-    keyword ? dispatch(fetchStoreListByTag(keyword)) : dispatch(fetchStoreList());
+
+    keyword ? fetchStoreListByTag(keyword) : fetchStoreList();
   }
 
   componentDidUpdate(prevProps) {
-    const { dispatch } = this.props;
-    const keyword = this.props.match.params.keyword;
+    const {
+      fetchStoreListByTag,
+      match: { params: { keyword }}
+    } = this.props;
 
     if (keyword !== prevProps.match.params.keyword) {
-      dispatch(fetchStoreListByTag(keyword));
+      fetchStoreListByTag(keyword);
     }
   }
 
@@ -73,10 +79,18 @@ class Tag extends Component {
   }
 }
 
-// Tag.propTypes = {
-//   nearbyStoresData: PropTypes.array.isRequired,
-//   recommendStoresData: PropTypes.array.isRequired,
-//   hotStoresData: PropTypes.array.isRequired,
-// };
+Tag.propTypes = {
+  hotStoresData: PropTypes.array.isRequired,
+  nearbyStoresData: PropTypes.array.isRequired,
+  recommendStoresData: PropTypes.array.isRequired,
+};
 
-export default withRouter(connect(state => state)(Tag));
+const mapDispatchToProps = {
+  fetchStoreList,
+  fetchStoreListByTag,
+};
+
+export default withRouter(connect(
+  state => state,
+  mapDispatchToProps,
+)(Tag));
