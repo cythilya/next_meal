@@ -1,4 +1,4 @@
-export const hotTags = [
+export const HOT_TAGS = [
   '日式料理',
   '早午餐',
   '沙拉',

@@ -6,19 +6,19 @@ import PropTypes from 'prop-types';
 import { fetchStoreListByTag } from '../actions/index';
 import Notfound from '../components/not_found';
 import Page from '../components/page';
-import StoreItem from '../components/store_item';
-import { hotTags } from '../data/data';
+import Store from '../components/store_item';
+import { HOT_TAGS } from '../data/data';
 
 const renderStores = (stores) => {
   return _.map(stores, (store) => {
     return (
-      <StoreItem key={store.id} store={store} />
+      <Store key={store.id} store={store} />
     );
   });
 };
 
 const renderNotFound = () => {
-  return (<Notfound tags={hotTags.slice(0, 3)} />);
+  return (<Notfound tags={HOT_TAGS.slice(0, 3)} />);
 };
 
 const renderLoading = () => {
