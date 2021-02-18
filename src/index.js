@@ -16,6 +16,7 @@ import Index from './containers/index';
 import Store from './containers/store';
 import Fav from './containers/fav';
 import Tag from './containers/tag';
+import { ContextProvider } from './context';
 import reducers from './reducers';
 import i18n from './scripts/i18n';
 
@@ -27,16 +28,18 @@ ReactDOM.render(
       <CSSReset />
         <CookiesProvider>
           <Provider store={createStoreWithMiddleware(reducers)}>
-            <BrowserRouter>
-              <div>
-                <Switch>
-                  <Route path="/tag/:keyword" component={Tag} />
-                  <Route path="/store/:id" component={Store} />
-                  <Route path="/fav/" component={Fav} />
-                  <Route path="/" component={Index} />
-                </Switch>
-              </div>
-            </BrowserRouter>
+            <ContextProvider>
+              <BrowserRouter>
+                <div>
+                  <Switch>
+                    <Route path="/tag/:keyword" component={Tag} />
+                    <Route path="/store/:id" component={Store} />
+                    <Route path="/fav/" component={Fav} />
+                    <Route path="/" component={Index} />
+                  </Switch>
+                </div>
+              </BrowserRouter>
+            </ContextProvider>
           </Provider>
         </CookiesProvider>
     </ThemeProvider>

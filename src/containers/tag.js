@@ -3,10 +3,12 @@ import React, { createContext, useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
+import { Center, CircularProgress } from '@chakra-ui/react';
 import { fetchStoreListByTag } from '../actions/index';
 import Notfound from '../components/not_found';
 import Page from '../components/page';
 import Store from '../components/store_item';
+import { useUIDispatch, useUIState } from '../context';
 import { HOT_TAGS } from '../data/data';
 
 const StoreListContext = createContext();
@@ -24,32 +26,30 @@ const renderNotFound = () => {
 };
 
 const renderLoading = () => {
-  return <div className="icon-loading store-item__loading" />;
+  return (
+    <Center>
+      <CircularProgress isIndeterminate color="orange.400" />
+    </Center>
+  )
 };
 
 const checkNotFoundStoreStatus = (stores) => {
   return _.isArray(stores) && _.isEmpty(stores)
 };
 
-const renderView = (stores) => {
-  const isNotFound = checkNotFoundStoreStatus(stores);
-  const isLoading = _.isObject(stores) && !_.isArray(stores) && _.isEmpty(stores);
-
-  if (isLoading) {
-    return renderLoading();
-  } else if (isNotFound) {
-    return renderNotFound();
-  }
-}
-
 const Tag = () => {
   const dispatch = useDispatch();
+  const { toggleLoading } = useUIDispatch();
   const { keyword } = useParams();
+  const { isLoading } = useUIState();
   const stores = useSelector(state => state.stores);
   const isNotFound = checkNotFoundStoreStatus(stores);
 
   useEffect(() => {
-    dispatch(fetchStoreListByTag(keyword));
+    toggleLoading(true);
+    dispatch(fetchStoreListByTag(keyword)).then(() => {
+      toggleLoading(false);
+    });
   }, [keyword]);
 
   return (
@@ -66,7 +66,8 @@ const Tag = () => {
             )
           }
           <Stores />
-          {renderView(stores)}
+          {isLoading && renderLoading()}
+          {isNotFound && renderNotFound()}
           </StoreListContext.Provider>
       </div>
     </Page>
