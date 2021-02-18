@@ -27,7 +27,7 @@ const renderNotFound = () => {
 
 const renderLoading = () => {
   return (
-    <Center>
+    <Center h='100vh'>
       <CircularProgress isIndeterminate color="orange.400" />
     </Center>
   )
@@ -54,6 +54,7 @@ const Tag = () => {
 
   return (
     <Page title="標籤頁" id="tag">
+      {isLoading && renderLoading()}
       <div className="panel">
         <StoreListContext.Provider value={stores}>
           { !isNotFound
@@ -66,7 +67,6 @@ const Tag = () => {
             )
           }
           <Stores />
-          {isLoading && renderLoading()}
           {isNotFound && renderNotFound()}
           </StoreListContext.Provider>
       </div>
