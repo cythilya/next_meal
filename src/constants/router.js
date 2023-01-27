@@ -34,7 +34,7 @@ export const menu = {
 }
 
 export default {
-  ...menu,
+  // ...menu,
   index: {
     id: 'index',
     title: '首頁',

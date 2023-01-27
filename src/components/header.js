@@ -338,13 +338,13 @@ class Header extends Component {
     const { modalType } = this.state;
 
     return (
-      <div className="header">
-        <div className="header__main">
+      <div className='header'>
+        <div className='header__main'>
           {this.renderLogo()}
           {this.renderSearchBox()}
         </div>
-        <div className="header__control">
-          {this.renderMenuList()}
+        <div className='header__control'>
+          {/* {this.renderMenuList()} */}
           {this.renderLoginModal()}
         </div>
         {modalType === MODAL_TYPE.LOGON && this.renderLoginModal()}
